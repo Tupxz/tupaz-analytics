@@ -1,0 +1,14 @@
+<!doctype html>
+<!-- Exporta el logo a PNG con fondo transparente (528 × 112, el doble de su tamaño base).
+     Abrir como tools/logo.html?v=oscuro o ?v=claro y tomar una captura de 528 × 112. -->
+<html lang="es-CO"><head><meta charset="utf-8">
+<!-- Sitio en prueba: no aparece en buscadores. Quitar esta línea al lanzar. -->
+<meta name="robots" content="noindex">
+<title>Logo · Tupaz Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Outfit:wght@800&display=swap" rel="stylesheet">
+<style>html,body{margin:0;background:transparent}img,object{display:block}</style></head>
+<body><div id="logo"></div>
+<script>
+  var v = /claro/.test(location.search) ? 'claro' : 'oscuro';
+  fetch('../assets/img/logo-' + v + '.svg').then(function (r) { return r.text(); }).then(function (t) { document.getElementById('logo').innerHTML = t; });
+</script></body></html>

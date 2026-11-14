@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Sitio en prueba: no aparece en buscadores. Quitar esta línea al lanzar. -->
+<meta name="robots" content="noindex">
+<title>Tupaz Analytics · Economía y Datos</title>
+<meta name="description" content="Tableros automatizados, proyecciones y análisis económico para pymes, consultoras, propiedad horizontal y entidades públicas del Valle de Aburrá. Primera reunión de 20 minutos, sin costo.">
+
+<!-- Vista previa al compartir por WhatsApp o LinkedIn. La imagen va con dirección completa:
+     WhatsApp no lee rutas relativas. Si cambia el dominio, cambia og:url y og:image. -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="Tupaz Analytics">
+<meta property="og:title" content="Tupaz Analytics · Economía y Datos">
+<meta property="og:description" content="Sus datos, al día y sin copiar y pegar. Tableros automatizados, proyecciones con su margen de error y análisis económico. Pruebe el tablero con datos reales de Medellín.">
+<meta property="og:url" content="https://tupxz.github.io/tupaz-analytics/">
+<meta property="og:image" content="https://tupxz.github.io/tupaz-analytics/assets/img/og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tupaz Analytics · Economía y Datos. Gráfico del desempleo de Medellín con su tendencia.">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="theme-color" content="#071A4A">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<script>
+  // Tema antes de pintar, para que nada parpadee. El sitio es oscuro; «Modo claro» está en el pie.
+  (function () {
+    var r = document.documentElement, t = null;
+    r.classList.add('js');
+    try { t = localStorage.getItem('tema'); } catch (e) {}
+    if (t === 'claro') r.setAttribute('data-tema', 'claro');
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/estilos.css">
+</head>
+
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- ═══════════ Encabezado: marca, menú con desplegables y WhatsApp ═══════════ -->
+<header class="cab" id="cab">
+  <div class="ancho cab__fila">
+    <a class="logo" href="#inicio" aria-label="Tupaz Analytics, Economía y Datos: ir al inicio"><svg class="logo__svg" viewBox="0 0 264 56" aria-hidden="true" focusable="false"><polyline class="logo__traza" points="3,38 12,29 19,33 29,19 35,23 41,11"/><circle class="logo__punto" cx="41" cy="11" r="4.5"/><text class="logo__texto" x="54" y="31"><tspan class="logo__tupaz">Tupaz</tspan> <tspan class="logo__analytics">Analytics</tspan></text><text class="logo__lema" x="55" y="51">Economía y Datos</text></svg></a>
+
+    <nav class="menu" aria-label="Secciones del sitio">
+      <button class="menu__item menu__item--mas" type="button" aria-expanded="false" aria-controls="mega-trabajo" data-pestana="mi-trabajo">Mi trabajo</button>
+      <a class="menu__item" href="#tablero" data-pestana="tablero">Tablero</a>
+      <button class="menu__item menu__item--mas" type="button" aria-expanded="false" aria-controls="mega-servicios" data-pestana="servicios">Servicios</button>
+      <a class="menu__item" href="#sobre-mi" data-pestana="sobre-mi">Sobre mí</a>
+    </nav>
+
+    <a class="firma firma--chica cab__accion" href="#hablemos" data-pestana="hablemos"><span class="firma__t">Hablemos</span><span class="firma__f" aria-hidden="true"></span></a>
+    <button class="hamb" id="hamb" type="button" aria-expanded="false" aria-controls="movil" aria-label="Abrir el menú"><span></span></button>
+  </div>
+
+  <div class="mega" id="mega-trabajo" hidden>
+    <div class="ancho">
+      <div class="mega__panel mega__panel--4">
+        <a class="mega__t" href="#caso-nairu"><b>NAIRU y PIB potencial</b><span>Pipeline de datos en Python, con más de 490 pruebas</span></a>
+        <a class="mega__t" href="#caso-informe"><b>Informe de Coyuntura</b><span>Balanza de pagos, informes No. 25 al 27</span></a>
+        <a class="mega__t" href="#caso-antioquia"><b>Coyuntura Antioquia</b><span>Un tablero que se arma solo</span></a>
+        <a class="mega__t" href="#mas-proyectos"><b>Más proyectos</b><span>Cinco proyectos de la universidad, en línea</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mega" id="mega-servicios" hidden>
+    <div class="ancho">
+      <div class="mega__panel">
+        <a class="mega__t" href="#servicio-tableros"><b>Tableros automatizados</b><span>Sus datos al día, sin copiar y pegar</span></a>
+        <a class="mega__t" href="#servicio-proyecciones"><b>Proyecciones y escenarios</b><span>Qué puede pasar con sus ventas o su recaudo</span></a>
+        <a class="mega__t" href="#servicio-analisis"><b>Análisis económico y de mercado</b><span>Cómo está su mercado y qué lo afecta</span></a>
+        <a class="mega__t mega__t--ancha" href="#plan-mensual"><b>Plan mensual</b><span>Recomendado después de cualquier proyecto · $800.000 – $1.500.000 al mes</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Menú del celular: el mismo menú, con sus desplegables abiertos -->
+<div class="movil" id="movil" hidden>
+  <div class="ancho">
+    <div class="movil__grupo">
+      <a class="movil__titulo" href="#mi-trabajo" data-pestana="mi-trabajo">Mi trabajo</a>
+      <div class="movil__sub">
+        <a href="#caso-nairu"><b>NAIRU y PIB potencial</b><span>Pipeline de datos en Python, con más de 490 pruebas</span></a>
+        <a href="#caso-informe"><b>Informe de Coyuntura</b><span>Balanza de pagos, informes No. 25 al 27</span></a>
+        <a href="#caso-antioquia"><b>Coyuntura Antioquia</b><span>Un tablero que se arma solo</span></a>
+        <a href="#mas-proyectos"><b>Más proyectos</b><span>Cinco proyectos de la universidad, en línea</span></a>
+      </div>
+    </div>
+    <div class="movil__grupo"><a class="movil__titulo" href="#tablero" data-pestana="tablero">Tablero</a></div>
+    <div class="movil__grupo">
+      <a class="movil__titulo" href="#servicios" data-pestana="servicios">Servicios</a>
+      <div class="movil__sub">
+        <a href="#servicio-tableros"><b>Tableros automatizados</b><span>Sus datos al día, sin copiar y pegar</span></a>
+        <a href="#servicio-proyecciones"><b>Proyecciones y escenarios</b><span>Qué puede pasar con sus ventas o su recaudo</span></a>
+        <a href="#servicio-analisis"><b>Análisis económico y de mercado</b><span>Cómo está su mercado y qué lo afecta</span></a>
+        <a href="#plan-mensual"><b>Plan mensual</b><span>Recomendado después de cualquier proyecto</span></a>
+      </div>
+    </div>
+    <div class="movil__grupo"><a class="movil__titulo" href="#sobre-mi" data-pestana="sobre-mi">Sobre mí</a></div>
+    <div class="movil__grupo"><a class="firma firma--ancha" href="#hablemos" data-pestana="hablemos"><span class="firma__t">Hablemos</span><span class="firma__f" aria-hidden="true"></span></a></div>
+  </div>
+</div>
+
+<!-- Ruta: siempre dice dónde está el visitante. La llena app.js. -->
+<nav class="ruta" id="ruta" aria-label="Usted está aquí">
+  <div class="ancho ruta__fila">
+    <ol class="ruta__lista" id="ruta-lista"><li><a href="#inicio">Inicio</a></li></ol>
+  </div>
+</nav>
+
+<main id="contenido">
+
+<!-- ═══════════════════════ 1. INICIO ═══════════════════════ -->
+<div class="hoja" id="inicio" data-hoja="inicio">
+
+  <section class="hero" aria-labelledby="t-inicio">
+    <div class="hero__fondo" id="hero-fondo" aria-hidden="true"></div>
+    <div class="ancho">
+      <div class="hero__fila">
+        <div class="hero__texto">
+          <p class="pildora pildora--verde">Para pymes, consultoras, propiedad horizontal y entidades públicas</p>
+          <h1 id="t-inicio" data-escribir>Sus datos, <em>al día</em> y sin copiar y pegar.</h1>
+          <p class="bajada">Le muestro qué está pasando con sus datos, qué tan preciso es cada pronóstico y qué viene.</p>
+          <div class="hero__acciones">
+            <a class="firma" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
+            <a class="firma firma--linea" href="#tablero"><span class="firma__t">Pruebe el tablero</span><span class="firma__f" aria-hidden="true"></span></a>
+          </div>
+          <p class="hero__riesgo">Primera reunión de 20 minutos, sin costo.</p>
+        </div>
+        <figure class="hero__foto">
+          <img src="assets/img/foto-768.webp" srcset="assets/img/foto-384.webp 384w, assets/img/foto-768.webp 768w" sizes="(max-width: 860px) 340px, 460px" width="768" height="960" alt="Santiago Tupaz Ramírez, de Tupaz Analytics" fetchpriority="high">
+          <figcaption class="hero__dato">
+            <b>Santiago Tupaz Ramírez</b>
+            <span>Tupaz Analytics · Economía y Datos</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- Credenciales: solo texto, sin logos. Rotan despacio y se pueden pausar. -->
+      <section class="sellos" id="sellos" aria-label="Credenciales">
+        <div class="sellos__ventana">
+          <ul class="sellos__riel" id="sellos-riel">
+            <li>Semillero de Coyuntura Económica · EAFIT</li>
+            <li>Informe de Coyuntura presentado ante la Cámara de Comercio (No. 25 al 27)</li>
+            <li>Monitor · Conferencia Internacional AREUEA 2026</li>
+            <li>Miembro de DAMA Antioquia</li>
+            <li>FENADECO</li>
+            <li>Certificado en Evaluación de Impacto en RStudio</li>
+          </ul>
+        </div>
+        <div class="sellos__cabeza">
+          <p class="nota">Se nombran como trayectoria académica; estas organizaciones no patrocinan este sitio.</p>
+          <button class="sellos__pausa" id="sellos-pausa" type="button" aria-pressed="false" hidden>Pausar</button>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="seccion seccion--banda" data-ruta="Antioquia hoy" aria-labelledby="t-hoy">
+    <div class="ancho">
+      <header class="seccion__cabeza seccion__cabeza--centro">
+        <p class="pildora" data-solo-con-datos>Antioquia hoy · datos al <span data-dato="corte"></span></p>
+        <h2 id="t-hoy">Datos <em>reales</em>, no un dibujo.</h2>
+        <p class="bajada">Datos reales del DANE, actualizados con un solo comando.</p>
+      </header>
+
+      <figure class="portada-grafico">
+        <figcaption class="figura__titulo">Desempleo de Medellín, <span data-dato="portada-rango">2007–2026</span></figcaption>
+        <div class="lienzo" id="grafico-portada" data-alto="400" data-alto-movil="260"></div>
+        <ul class="leyenda" aria-hidden="true">
+          <li><i class="muestra muestra--azul"></i>Dato de cada trimestre</li>
+          <li><i class="muestra muestra--verde muestra--gruesa"></i>Tendencia</li>
+        </ul>
+        <p class="figura__fuente">Fuente: DANE, Gran Encuesta Integrada de Hogares. Tendencia: filtro de Hodrick-Prescott, cálculos propios.</p>
+      </figure>
+
+      <div class="hoy" id="hoy" hidden>
+        <div class="hoy__cabeza">
+          <p>Seis indicadores de Antioquia</p>
+          <span class="nota">Fuentes: DANE, Banco de la República y datos.gov.co</span>
+        </div>
+        <ul class="hoy__lista" id="hoy-lista"></ul>
+      </div>
+
+      <p class="seccion__pie"><a class="firma" href="#tablero"><span class="firma__t">Vea qué dicen y hacia dónde van</span><span class="firma__f" aria-hidden="true"></span></a></p>
+    </div>
+  </section>
+
+  <section class="seccion franja-clara" data-ruta="¿Le suena?" aria-labelledby="t-suena">
+    <div class="ancho">
+      <header class="seccion__cabeza">
+        <p class="pildora">¿Le suena?</p>
+        <h2 id="t-suena">Menos Excel, <em>más decisiones.</em></h2>
+      </header>
+      <div class="suena">
+        <div class="suena__fila">
+          <p class="suena__quien">Una pyme</p>
+          <p class="suena__hoy">El informe de ventas se arma a mano y se decide «a ojo» cuánto comprar o producir.</p>
+          <p class="suena__cambio">Ve sus ventas y su mercado en un tablero que se actualiza solo.</p>
+        </div>
+        <div class="suena__fila">
+          <p class="suena__quien">Una administración de propiedad horizontal</p>
+          <p class="suena__hoy">Cartera, presupuesto y gastos en hojas sueltas; asambleas sin cifras claras.</p>
+          <p class="suena__cambio">Cartera y presupuesto claros para el consejo y la asamblea.</p>
+        </div>
+        <div class="suena__fila">
+          <p class="suena__quien">Una consultora</p>
+          <p class="suena__hoy">Sus clientes piden análisis económico o tableros y ese perfil no está en la nómina.</p>
+          <p class="suena__cambio">Apoyo en datos por proyecto, sin contratar nómina.</p>
+        </div>
+        <div class="suena__fila">
+          <p class="suena__quien">Una alcaldía o secretaría</p>
+          <p class="suena__hoy">Indicadores dispersos; el seguimiento al recaudo y al plan de desarrollo se hace a mano.</p>
+          <p class="suena__cambio">Seguimiento del recaudo y del plan de desarrollo, actualizado y con proyecciones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--banda" data-ruta="Servicios" aria-labelledby="t-inicio-servicios">
+    <div class="ancho">
+      <header class="seccion__cabeza">
+        <p class="pildora">Servicios y precios</p>
+        <h2 id="t-inicio-servicios" data-escribir>Tres servicios, con el <em>precio a la vista.</em></h2>
+        <p class="bajada">Precios orientativos en pesos colombianos. El valor exacto depende del tamaño de su operación y del alcance, y se lo confirmo por escrito antes de empezar.</p>
+      </header>
+      <div class="filas">
+        <article class="fila">
+          <div>
+            <h3>Tableros automatizados</h3>
+            <ul class="pildoras"><li class="pildora">Actualización automática</li><li class="pildora">Sus propios datos</li><li class="pildora">Power BI o web</li><li class="pildora">Capacitación incluida</li></ul>
+          </div>
+          <div class="fila__lado">
+            <p>Un tablero conectado a sus archivos, que se actualiza sin que nadie copie y pegue.</p>
+            <p class="precio"><span>Desde</span><b>$3.000.000</b></p>
+            <a class="firma" href="#servicio-tableros"><span class="firma__t">Ver servicio</span><span class="firma__f" aria-hidden="true"></span></a>
+          </div>
+        </article>
+        <article class="fila">
+          <div>
+            <h3>Proyecciones y escenarios</h3>
+            <ul class="pildoras"><li class="pildora">6, 12 o 24 meses</li><li class="pildora">Tres escenarios</li><li class="pildora">Margen de error</li><li class="pildora">Lenguaje sencillo</li></ul>
+          </div>
+          <div class="fila__lado">
+            <p>Pase de «qué pasó» a «qué puede pasar» con sus ventas, su recaudo, su demanda o su cartera.</p>
+            <p class="precio"><span>Desde</span><b>$1.500.000</b></p>
+            <a class="firma" href="#servicio-proyecciones"><span class="firma__t">Ver servicio</span><span class="firma__f" aria-hidden="true"></span></a>
+          </div>
+        </article>
+        <article class="fila">
+          <div>
+            <h3>Análisis económico y de mercado</h3>
+            <ul class="pildoras"><li class="pildora">Fuentes oficiales</li><li class="pildora">Su sector y su competencia</li><li class="pildora">Informe en PDF y Excel</li><li class="pildora">Reunión de resultados</li></ul>
+          </div>
+          <div class="fila__lado">
+            <p>Cómo está su mercado, cómo se compara usted y qué variables de la economía lo afectan.</p>
+            <p class="precio"><span>Desde</span><b>$1.500.000</b></p>
+            <a class="firma" href="#servicio-analisis"><span class="firma__t">Ver servicio</span><span class="firma__f" aria-hidden="true"></span></a>
+          </div>
+        </article>
+      </div>
+      <article class="plan plan--corto">
+        <div>
+          <p class="pildora pildora--oscura">Recomendado después de cualquier proyecto</p>
+          <h3>Plan mensual</h3>
+          <p class="plan__beneficio">Que el trabajo no se quede quieto: su tablero al día y, cada mes, un informe breve de qué pasó con sus cifras y con la economía que las mueve.</p>
+        </div>
+        <div class="fila__lado">
+          <p class="precio"><span>Desde</span><b>$800.000</b><small>al mes</small></p>
+          <a class="firma firma--oscura" href="#plan-mensual"><span class="firma__t">Ver servicio</span><span class="firma__f" aria-hidden="true"></span></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="seccion" data-ruta="Prueba" aria-labelledby="t-prueba">
+    <div class="ancho">
+      <header class="seccion__cabeza">
+        <p class="pildora">Prueba, no promesas</p>
+        <h2 id="t-prueba">Sé cuánto se equivoca el pronóstico. <em>Y se lo digo.</em></h2>
+      </header>
+      <div class="pruebas">
+        <div class="prueba prueba--grande">
+          <p class="cifra"><span data-dato="mae">0,39</span><small>puntos</small></p>
+          <p>Es el error promedio de mi pronóstico del desempleo de Medellín a un mes, en <span data-dato="n-pruebas">24</span> pruebas con meses que ya pasaron. Una regla simple se equivoca <span data-dato="mae-simple">1,36</span>.</p>
+          <p class="nota">Fuente: prueba retrospectiva del tablero.</p>
+          <a class="flecha" href="#tablero">Véala paso a paso <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="prueba">
+          <p class="cifra"><span data-dato="n-series">31</span><small>series</small></p>
+          <p>De empleo, precios, tasas, dólar, construcción y exportaciones. Se descargan, se limpian y se revisan con un solo comando.</p>
+          <p class="nota">Fuente: DANE, Banco de la República y datos.gov.co.</p>
+        </div>
+        <div class="prueba">
+          <p class="prueba__cita">Informes de Coyuntura No. 25 al 27, presentados ante la Cámara de Comercio.</p>
+          <p>Capítulo de Balanza de pagos, hecho en equipo de cuatro con un flujo reproducible en Python.</p>
+          <a class="flecha" href="#caso-informe">Vea mi trabajo <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--banda" data-ruta="Mi historia" aria-labelledby="t-inicio-historia">
+    <div class="ancho">
+      <header class="seccion__cabeza seccion__cabeza--centro">
+        <p class="pildora">Mi historia</p>
+        <h2 id="t-inicio-historia">De la universidad a <em>Tupaz Analytics.</em></h2>
+      </header>
+      <ol class="historia historia--corta">
+        <li><p class="historia__anio">2024</p><ul class="historia__hitos"><li><b>Grupo de Economía de la Salud, EAFIT.</b> Miembro y organizador de workshops.</li></ul></li>
+        <li><p class="historia__anio">2025</p><ul class="historia__hitos"><li><b>Informe de Coyuntura No. 25.</b> Capítulo de Balanza de pagos, presentado ante la Cámara de Comercio.</li></ul></li>
+        <li><p class="historia__anio">2026</p><ul class="historia__hitos"><li><b>Informes de Coyuntura No. 26 y No. 27.</b> Mayo y octubre.</li><li class="historia__hito"><b>Nace Tupaz Analytics.</b></li></ul></li>
+      </ol>
+      <div class="cifras">
+        <div><p class="cifra">3</p><p>informes de coyuntura</p></div>
+        <div><p class="cifra">6</p><p>proyectos publicados</p></div>
+        <div><p class="cifra">+490</p><p>pruebas automatizadas</p></div>
+      </div>
+      <p class="seccion__pie seccion__pie--centro"><a class="firma firma--linea" href="#historia"><span class="firma__t">Conozca mi historia</span><span class="firma__f" aria-hidden="true"></span></a></p>
+    </div>
+  </section>
+
+  <section class="seccion" data-ruta="Trabaja conmigo" aria-labelledby="t-directo">
+    <div class="ancho">
+      <div class="directo">
+        <img class="directo__foto" src="assets/img/foto-cara-320.webp" srcset="assets/img/foto-cara-160.webp 160w, assets/img/foto-cara-320.webp 320w" sizes="260px" width="320" height="320" alt="Santiago Tupaz Ramírez" loading="lazy" decoding="async">
+        <div>
+          <p class="pildora pildora--verde">Una sola persona, de principio a fin</p>
+          <h2 id="t-directo">Trabaja <em>directamente conmigo,</em> no con un practicante: quien hace el análisis es quien le responde.</h2>
+          <p>Soy Santiago Tupaz Ramírez. La misma persona que se reúne con usted limpia sus datos, arma el tablero y le explica los resultados.</p>
+          <a class="flecha" href="#sobre-mi">Conozca quién hace el trabajo <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--banda" data-ruta="Aprenda gratis" aria-labelledby="t-gratis">
+    <div class="ancho">
+      <header class="seccion__cabeza">
+        <p class="pildora">Recursos</p>
+        <h2 id="t-gratis">Aprenda <em>gratis.</em></h2>
+        <p class="bajada">La economía de Antioquia, explicada en lenguaje sencillo.</p>
+      </header>
+      <article class="tarjeta tarjeta--ancha">
+        <div class="tarjeta__arriba">
+          <div class="lienzo" id="grafico-tarjeta" data-alto="250" data-alto-movil="210"></div>
+          <p class="tarjeta__nota" id="nota-tarjeta">Cada enero–marzo el desempleo sube por temporada; frente al mismo trimestre de 2026, el modelo espera menos.</p>
+        </div>
+        <div class="tarjeta__cuerpo">
+          <h3>Tablero en vivo de Antioquia</h3>
+          <p>Desempleo e inflación de Medellín, paso a paso: qué está pasando, hacia dónde va y qué tan preciso es el pronóstico.</p>
+          <a class="firma firma--ancha" href="#tablero"><span class="firma__t">Pruebe el tablero</span><span class="firma__f" aria-hidden="true"></span></a>
+        </div>
+      </article>
+
+      <h3 class="redes__titulo">Sígame en redes</h3>
+      <div class="redes">
+        <a class="red" data-red="linkedin" href="https://linkedin.com/in/santiago-tupaz-ram%C3%ADrez-2b87082b3" target="_blank" rel="noopener"><b>LinkedIn</b><span>Novedades de Tupaz Analytics y mi trayectoria</span></a>
+        <a class="red" data-red="github" href="https://github.com/Tupxz" target="_blank" rel="noopener"><b>GitHub</b><span>El código de mis proyectos, abierto</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="ancho">
+      <aside class="cierre">
+        <h2>¿Su informe todavía se arma <em>a mano?</em></h2>
+        <p>Cuénteme cómo lo hacen hoy. La primera reunión dura 20 minutos y no tiene costo.</p>
+        <div class="cierre__acciones">
+          <a class="firma firma--grande" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
+          <a class="flecha" href="#mi-trabajo">Siguiente: Mi trabajo <span aria-hidden="true">→</span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════ 2. MI TRABAJO ═══════════════════════ -->
+<div class="hoja" id="mi-trabajo" data-hoja="mi-trabajo">
+  <header class="pagina__cabeza">
+    <div class="ancho">
+      <p class="pildora">Mi trabajo</p>
+      <h1>Trabajo que usted puede <em>revisar.</em></h1>
+      <p class="bajada">Cada caso dice de dónde partí, qué hice y qué quedó, con su enlace.</p>
+    </div>
+  </header>
+
+  <section class="seccion seccion--corta" style="padding-top:0">
+    <div class="ancho casos">
+      <article class="caso" id="caso-nairu" data-ruta="Caso NAIRU">
+        <ul class="pildoras"><li class="pildora pildora--verde">Caso principal</li><li class="pildora">Python</li></ul>
+        <h2>NAIRU y PIB potencial: un pipeline de datos en Python</h2>
+        <p class="nota">Series de DANE, Banco de la República, FRED, ANDI y Penn World Table</p>
+        <p class="sirve"><b>Esto le sirve a usted para</b> distinguir si un cambio en sus ventas o en su recaudo es de temporada, del ciclo de la economía o de fondo, con datos de varias fuentes reunidos y revisados de forma automática.</p>
+        <div class="caso__partes">
+          <div class="caso__parte">
+            <h3>De dónde partí</h3>
+            <p>La NAIRU (el desempleo que no acelera la inflación) y el PIB potencial no se pueden observar: hay que estimarlos con series de varias fuentes, que llegan en formatos distintos.</p>
+          </div>
+          <div class="caso__parte">
+            <h3>Qué hice</h3>
+            <p>Un pipeline en Python que reúne las series del DANE, el Banco de la República, FRED, la ANDI y la Penn World Table, y estima las dos variables con filtros de Kalman y Boosted HP.</p>
+          </div>
+          <div class="caso__parte caso__parte--quedo">
+            <h3>Qué quedó</h3>
+            <ul>
+              <li>Un sitio público con los resultados.</li>
+              <li><b>Más de 490</b> pruebas automatizadas.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="caso__pie"><a class="firma" href="https://tupxz.github.io/scraping-NAIRU/" target="_blank" rel="noopener"><span class="firma__t">Ver caso</span><span class="firma__f" aria-hidden="true"></span></a></p>
+      </article>
+
+      <article class="caso" id="caso-informe" data-ruta="Informe de Coyuntura">
+        <ul class="pildoras"><li class="pildora">En equipo de cuatro</li><li class="pildora">Python</li></ul>
+        <h2>Informe de Coyuntura, presentado ante la Cámara de Comercio</h2>
+        <p class="nota">Semillero de Coyuntura Económica · EAFIT · desde junio de 2025</p>
+        <p class="sirve"><b>Esto le sirve a usted para</b> entender cómo el dólar, el comercio exterior y la inflación pueden mover sus costos y sus ventas, en un informe que se actualiza con el mismo flujo cada vez.</p>
+        <div class="caso__partes">
+          <div class="caso__parte">
+            <h3>De dónde partí</h3>
+            <p>El Semillero de Coyuntura Económica de EAFIT presenta su Informe de Coyuntura ante la Cámara de Comercio y mantiene un tablero de coyuntura con datos públicos.</p>
+          </div>
+          <div class="caso__parte">
+            <h3>Qué hice</h3>
+            <p>En equipo de cuatro, el capítulo de Balanza de pagos de los informes No. 25 (octubre de 2025) al No. 27 (octubre de 2026), con un flujo reproducible en Python: datos, análisis y gráficos. Además, web scraping y automatización para recolectar los datos del tablero.</p>
+          </div>
+          <div class="caso__parte caso__parte--quedo">
+            <h3>Qué quedó</h3>
+            <ul>
+              <li>Capítulo de Balanza de pagos en tres informes, con comparación frente a Chile, Perú, Brasil, México y Sudáfrica.</li>
+              <li>Participación en el capítulo 6, Inflación y política monetaria, del Informe No. 26 (mayo de 2026).</li>
+            </ul>
+          </div>
+        </div>
+        <p class="caso__pie"><a class="firma firma--linea" href="https://www.eafit.edu.co/sistema-ciencia-tecnologia-innovacion/investigacion/nuestros-semilleros/investigacion-analisis-coyuntura-economica" target="_blank" rel="noopener"><span class="firma__t">Página del semillero</span><span class="firma__f" aria-hidden="true"></span></a></p>
+      </article>
+
+      <article class="caso" id="caso-antioquia" data-ruta="Coyuntura Antioquia">
+        <ul class="pildoras"><li class="pildora">Demo de Tupaz Analytics</li><li class="pildora">Python</li></ul>
+        <h2>Coyuntura Antioquia: un tablero que se arma solo</h2>
+        <p class="nota">Datos del DANE y del Banco de la República</p>
+        <p class="sirve"><b>Esto le sirve a usted para</b> tener sus cifras clave al día sin que nadie copie y pegue, y saber cuánto puede creerle a cada pronóstico.</p>
+        <div class="caso__partes">
+          <div class="caso__parte">
+            <h3>De dónde partí</h3>
+            <p>Las cifras de empleo, precios, tasas y actividad de Antioquia están en varias páginas oficiales, en archivos que cambian de dirección cada mes.</p>
+          </div>
+          <div class="caso__parte">
+            <h3>Qué hice</h3>
+            <p>Un programa que, con un solo comando, descarga los datos, los limpia, los revisa, calcula pronósticos y arma el tablero con su análisis escrito.</p>
+          </div>
+          <div class="caso__parte caso__parte--quedo">
+            <h3>Qué quedó</h3>
+            <ul>
+              <li><b data-dato="n-series">31</b> series que se actualizan sin copiar ni pegar.</li>
+              <li>Pronósticos con su error medido: <b><span data-dato="mae">0,39</span> puntos</b> a un mes en desempleo.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="caso__pie"><a class="firma" href="#tablero"><span class="firma__t">Pruebe el tablero</span><span class="firma__f" aria-hidden="true"></span></a></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="seccion franja-clara" id="mas-proyectos" data-ruta="Más proyectos" aria-labelledby="t-mas">
+    <div class="ancho">
+      <header class="seccion__cabeza">
+        <p class="pildora">Proyectos de la universidad</p>
+        <h2 id="t-mas">Más proyectos, <em>publicados en línea</em></h2>
+      </header>
+      <ul class="proyectos">
+        <li><a href="https://tupxz.github.io/ciclos_economicos/site/index.html" target="_blank" rel="noopener"><span><i>Macroeconomía 3 · EAFIT</i><b>Análisis insumo-producto y ciclos económicos</b></span><span><em class="sirve"><b>Esto le sirve a usted para</b> ver qué sectores le compran y le venden al suyo, y cómo una caída en uno se transmite a los demás.</em><small>Python: inversa de Leontief, encadenamientos entre sectores, filtro HP y hechos estilizados.</small></span></a></li>
+        <li><a href="https://tupxz.github.io/eps-industrial-organization/" target="_blank" rel="noopener"><span><i>Organización Industrial · EAFIT</i><b>Poder de mercado de las EPS en Colombia, 2014–2024</b></span><span><em class="sirve"><b>Esto le sirve a usted para</b> medir qué tan concentrado está su mercado y cuánto pesa cada competidor.</em><small>Panel por EPS, departamento y año; índices de concentración HHI y CR4.</small></span></a></li>
+        <li><a href="https://tupxz.github.io/R2-ECV-Med/" target="_blank" rel="noopener"><span><i>Econometría II · EAFIT</i><b>Calidad de vida en la Comuna 9 de Medellín</b></span><span><em class="sirve"><b>Esto le sirve a usted para</b> conocer las condiciones de vida de una comuna antes de abrir un punto o diseñar un programa.</em><small>R y Quarto, con la Encuesta de Calidad de Vida de Medellín 2024.</small></span></a></li>
+        <li><a href="https://tupxz.github.io/Reto1_PoliticaMonetaria_Colombia/" target="_blank" rel="noopener"><span><i>Modelo VAR</i><b>Efectividad de la política monetaria en Colombia</b></span><span><em class="sirve"><b>Esto le sirve a usted para</b> anticipar cómo una subida de tasas del Banco de la República llega a la inflación y al costo del crédito.</em><small>Python: inflación, tasa de CDT a 90 días y otras variables.</small></span></a></li>
+        <li><a href="https://tupxz.github.io/colombia-marijuana-revenue-model/" target="_blank" rel="noopener"><span><i>Ciencia de Datos · EAFIT</i><b>Recaudo tributario por legalización del cannabis</b></span><span><em class="sirve"><b>Esto le sirve a usted para</b> estimar cuánto podría recaudar o vender bajo distintos escenarios antes de decidir.</em><small>Python: predicción del recaudo bajo escenarios.</small></span></a></li>
+      </ul>
+      <p class="nota proyectos__nota">Varios de estos proyectos se hicieron en equipo.</p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="ancho">
+      <aside class="cierre">
+        <h2>¿Quiere algo así con <em>sus datos?</em></h2>
+        <p>En 20 minutos vemos qué información tiene hoy y qué se puede automatizar. Sin costo.</p>
+        <div class="cierre__acciones">
+          <a class="firma firma--grande" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
+          <a class="flecha" href="#tablero">Siguiente: Tablero en vivo <span aria-hidden="true">→</span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════ 3. TABLERO EN VIVO ═══════════════════════ -->
+<div class="hoja" id="tablero" data-hoja="tablero">
+  <header class="pagina__cabeza">
+    <div class="ancho">
+      <p class="pildora">Tablero en vivo<span data-solo-con-datos> · datos al <span data-dato="corte"></span></span></p>
+      <h1>Un ejemplo real, <em>paso a paso.</em></h1>
+      <p class="bajada">Así trabajo, con cifras públicas de Medellín. Con las suyas (ventas, cartera, recaudo) el recorrido es el mismo.</p>
+    </div>
+  </header>
+
+  <section class="seccion seccion--corta" style="padding-top:0">
+    <div class="ancho">
+      <div class="recorrido" id="recorrido" hidden>
+        <div class="recorrido__barra">
+          <div class="selector" role="group" aria-label="Elija el indicador">
+            <span class="selector__rotulo">Indicador</span>
+            <button class="selector__boton" type="button" data-indicador="desempleo" aria-pressed="true">Desempleo</button>
+            <button class="selector__boton" type="button" data-indicador="inflacion" aria-pressed="false">Inflación</button>
+          </div>
+        </div>
+
+        <ol class="pasos" id="pasos" aria-label="Pasos del recorrido">
+          <li><button class="pasos__boton" type="button" data-paso="0"><span class="pasos__n">1</span><span class="pasos__t">Qué está pasando</span></button></li>
+          <li><button class="pasos__boton" type="button" data-paso="1"><span class="pasos__n">2</span><span class="pasos__t">Hacia dónde va</span></button></li>
+          <li><button class="pasos__boton" type="button" data-paso="2"><span class="pasos__n">3</span><span class="pasos__t">Qué tan preciso es el pronóstico</span></button></li>
+          <li><button class="pasos__boton" type="button" data-paso="3"><span class="pasos__n">4</span><span class="pasos__t">Y con sus datos</span></button></li>
+        </ol>
+
+        <div class="paso" id="paso" tabindex="-1"></div>
+
+        <div class="recorrido__nav">
+          <button class="atras" type="button" id="paso-atras"><span aria-hidden="true">←</span> Atrás</button>
+          <button class="firma" type="button" id="paso-sigue"><span class="firma__t">Siguiente</span><span class="firma__f" aria-hidden="true"></span></button>
+        </div>
+      </div>
+
+      <noscript>
+        <p class="nota">Para ver el recorrido interactivo active JavaScript, o abra el <a href="tablero-completo/">tablero completo</a>.</p>
+      </noscript>
+
+      <p class="tablero__completo">¿Prefiere ver todo de una vez? <a href="tablero-completo/">Abra el tablero completo, con la metodología</a> (versión técnica, pesa más).</p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="ancho">
+      <aside class="cierre">
+        <h2>Imagine este recorrido con <em>sus ventas.</em></h2>
+        <p>Le muestro cómo se vería con su información en una reunión de 20 minutos, sin costo.</p>
+        <div class="cierre__acciones">
+          <a class="firma firma--grande" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
+          <a class="flecha" href="#servicios">Siguiente: Servicios y precios <span aria-hidden="true">→</span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════ 4. SERVICIOS Y PRECIOS ═══════════════════════ -->
+<div class="hoja" id="servicios" data-hoja="servicios">
+  <header class="pagina__cabeza">
+    <div class="ancho">
+      <p class="pildora">Servicios y precios</p>
+      <h1 data-escribir>Tres servicios, con el <em>precio a la vista.</em></h1>
+      <p class="bajada">Precios orientativos en pesos colombianos. El valor exacto depende del tamaño de su operación y del alcance, y se lo confirmo por escrito antes de empezar.</p>
+    </div>
+  </header>
+
+  <section class="seccion seccion--corta" style="padding-top:0">
+    <div class="ancho">
+      <div class="filas">
+
+        <article class="fila" id="servicio-tableros" data-ruta="Tableros">
+          <div>
+            <h2 class="fila__titulo">Tableros automatizados</h2>
+            <ul class="pildoras"><li class="pildora">Actualización automática</li><li class="pildora">Sus propios datos</li><li class="pildora">Power BI o web</li><li class="pildora">Capacitación incluida</li></ul>
+            <p class="fila__para"><b>Le sirve si</b> tiene los datos dispersos y hoy alguien los consolida en Excel cada mes.</p>
+          </div>
+          <div class="fila__lado">
+            <p>Un tablero conectado a sus archivos, que se actualiza sin que nadie copie y pegue.</p>
+            <p class="precio"><span>Desde</span><b>$3.000.000</b><small>Hasta $5.000.000 · entrega en 3 a 5 semanas</small></p>
+            <p class="fila__recibe"><b>Recibe:</b> tablero en Power BI (o la herramienta que ya use), manual y capacitación.</p>
+            <a class="firma" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
+          </div>
+          <details class="detalle fila__detalle">
+            <summary>Qué incluye y qué no</summary>
+            <div class="detalle__listas">
+              <div>
+                <h4>Incluye</h4>
+                <ul>
+                  <li>Definición de sus indicadores clave (hasta 2 reuniones).</li>
+                  <li>Conexión de hasta 3 fuentes: sus Excel o CSV, fuentes públicas, archivos en la nube.</li>
+                  <li>Limpieza y actualización automática de los datos.</li>
+                  <li>Tablero de hasta 4 páginas y 12 indicadores, con filtros por fecha, sede, producto o municipio.</li>
+                  <li>Manual breve y capacitación de 1 hora.</li>
+                  <li>2 rondas de ajustes y 30 días de garantía por errores.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>No incluye</h4>
+                <ul>
+                  <li>Licencias de software (Power BI Pro u otras corren por su cuenta).</li>
+                  <li>Integración con un ERP o bases de datos que requieran desarrollo a la medida (se cotiza aparte).</li>
+                  <li>Digitación o corrección manual de datos históricos.</li>
+                  <li>Cambios después de la garantía (los cubre el plan mensual).</li>
+                </ul>
+              </div>
+            </div>
+            <p class="detalle__rango"><b>De qué depende el precio.</b> $3.000.000: 1 o 2 fuentes limpias y 2 páginas. $5.000.000: 3 fuentes con limpieza compleja, 4 páginas y actualización programada.</p>
+          </details>
+        </article>
+
+        <article class="fila" id="servicio-proyecciones" data-ruta="Proyecciones">
+          <div>
+            <h2 class="fila__titulo">Proyecciones y escenarios</h2>
+            <ul class="pildoras"><li class="pildora">6, 12 o 24 meses</li><li class="pildora">Tres escenarios</li><li class="pildora">Margen de error</li><li class="pildora">Lenguaje sencillo</li></ul>
+            <p class="fila__para"><b>Le sirve si</b> ya tiene el tablero o el análisis y necesita planear los próximos meses.</p>
+          </div>
+          <div class="fila__lado">
+            <p>Pase de «qué pasó» a «qué puede pasar» con sus ventas, su recaudo, su demanda o su cartera.</p>
+            <p class="precio"><span>Desde</span><b>$1.500.000</b><small>Hasta $3.000.000, adicionales al tablero o al análisis · entrega en 2 a 3 semanas</small></p>
+            <p class="fila__recibe"><b>Recibe:</b> proyección a 6, 12 o 24 meses con escenario pesimista, base y optimista.</p>
+            <a class="firma" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
+          </div>
+          <details class="detalle fila__detalle">
+            <summary>Qué incluye y qué no</summary>
+            <div class="detalle__listas">
+              <div>
+                <h4>Incluye</h4>
+                <ul>
+                  <li>Proyección de 1 a 3 variables.</li>
+                  <li>Modelos de series de tiempo elegidos según los datos que haya.</li>
+                  <li>Tres escenarios con supuestos explícitos de inflación, tasa de interés y crecimiento.</li>
+                  <li>Márgenes de error y una nota del método en lenguaje sencillo.</li>
+                  <li>La proyección integrada a su tablero, si lo tiene.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>No incluye</h4>
+                <ul>
+                  <li>Garantía de que el resultado real coincida con la proyección: se entregan rangos y supuestos, no certezas.</li>
+                  <li>Proyecciones con menos de 24 meses de datos sin advertirle que son poco confiables.</li>
+                  <li>Valoración de empresas ni estudios financieros para créditos.</li>
+                </ul>
+              </div>
+            </div>
+            <p class="detalle__rango"><b>Se contrata como complemento</b> del tablero o del análisis.</p>
+          </details>
+        </article>
+
+        <article class="fila" id="servicio-analisis" data-ruta="Análisis económico">
+          <div>
+            <h2 class="fila__titulo">Análisis económico y de mercado</h2>
+            <ul class="pildoras"><li class="pildora">Fuentes oficiales</li><li class="pildora">Su sector y su competencia</li><li class="pildora">Informe en PDF y Excel</li><li class="pildora">Reunión de resultados</li></ul>
+            <p class="fila__para"><b>Le sirve si</b> todavía no tiene sus datos organizados y quiere empezar por entender el terreno.</p>
+          </div>
+          <div class="fila__lado">
+            <p>Cómo está su mercado, cómo se compara usted y qué variables de la economía lo afectan.</p>
+            <p class="precio"><span>Desde</span><b>$1.500.000</b><small>Hasta $3.000.000 · entrega en 2 a 3 semanas</small></p>
+            <p class="fila__recibe"><b>Recibe:</b> informe en PDF (10 a 15 páginas) y Excel con los datos.</p>
+            <a class="firma" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
+          </div>
+          <details class="detalle fila__detalle">
+            <summary>Qué incluye y qué no</summary>
+            <div class="detalle__listas">
+              <div>
+                <h4>Incluye</h4>
+                <ul>
+                  <li>Reunión para entender qué necesita (1 hora).</li>
+                  <li>Análisis de su sector con fuentes oficiales: DANE, Banco de la República, Cámara de Comercio y datos.gov.co.</li>
+                  <li>Tamaño y tendencia del mercado, competencia, precios e indicadores como inflación, tasas y empleo.</li>
+                  <li>Si comparte sus datos: análisis de sus ventas o su recaudo, comparados con el sector.</li>
+                  <li>Reunión de presentación (1 hora) y 1 ronda de ajustes.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>No incluye</h4>
+                <ul>
+                  <li>Encuestas o trabajo de campo (se cotizan aparte).</li>
+                  <li>Compra de bases de datos pagas.</li>
+                  <li>Tablero interactivo ni actualización automática (eso es el servicio 1).</li>
+                  <li>Asesoría legal, contable o tributaria.</li>
+                </ul>
+              </div>
+            </div>
+            <p class="detalle__rango"><b>De qué depende el precio.</b> $1.500.000: un sector, solo fuentes públicas. $3.000.000: varios segmentos o municipios, con sus datos y comparación con el sector.</p>
+          </details>
+        </article>
+      </div>
+
+      <!-- El plan mensual no es un cuarto servicio: acompaña a los tres. -->
+      <article class="plan" id="plan-mensual" data-ruta="Plan mensual">
+        <div>
+          <p class="pildora pildora--oscura">Recomendado después de cualquier proyecto</p>
+          <h2 class="fila__titulo">Plan mensual</h2>
+          <p class="plan__beneficio">Que el trabajo no se quede quieto: su tablero al día y, cada mes, un informe breve de qué pasó con sus cifras y con la economía que las mueve.</p>
+          <ul class="pildoras"><li class="pildora">Tablero al día</li><li class="pildora">Informe cada mes</li><li class="pildora">Hasta 3 horas de ajustes</li><li class="pildora">Soporte por WhatsApp</li></ul>
+          <p class="fila__para"><b>Acompaña a los tres servicios.</b> Permanencia sugerida: 3 meses.</p>
+        </div>
+        <div class="fila__lado">
+          <p class="precio"><span>Desde</span><b>$800.000</b><small>Hasta $1.500.000 al mes · informe en los primeros 5 días hábiles del mes</small></p>
+          <p class="fila__recibe"><b>Recibe:</b> informe de coyuntura de 2 a 4 páginas y hasta 3 horas de ajustes.</p>
+          <a class="firma firma--oscura" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
+        </div>
+        <details class="detalle fila__detalle">
+          <summary>Qué incluye y qué no</summary>
+          <div class="detalle__listas">
+            <div>
+              <h4>Incluye</h4>
+              <ul>
+                <li>Vigilancia de la actualización automática y corrección de fallas.</li>
+                <li>Hasta 3 horas de ajustes menores al mes: un indicador nuevo, un filtro, una fuente que cambió de formato.</li>
+                <li>Informe breve: qué pasó en el mes con sus indicadores y con la economía que los afecta.</li>
+                <li>Actualización trimestral de las proyecciones, si las contrató.</li>
+                <li>Soporte por correo o WhatsApp en horario hábil, con respuesta en 2 días hábiles.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>No incluye</h4>
+              <ul>
+                <li>Páginas o tableros nuevos (se cotizan como proyecto).</li>
+                <li>Horas de ajuste no usadas: no se acumulan.</li>
+                <li>Atención urgente el mismo día.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="detalle__rango"><b>De qué depende el precio.</b> $800.000: tablero pequeño e informe de 2 páginas. $1.500.000: tablero grande o varias sedes, e informe con proyecciones actualizadas.</p>
+        </details>
+      </article>
+    </div>
+  </section>
+
+  <section class="seccion franja-clara" data-ruta="Reglas claras" aria-labelledby="t-reglas">
+    <div class="ancho">
+      <header class="seccion__cabeza">
+        <p class="pildora">Reglas claras</p>
+        <h2 id="t-reglas">Lo que baja <em>su riesgo</em></h2>
+      </header>
+      <dl class="reglas">
+        <div><dt>Primera reunión</dt><dd>20 minutos, sin costo y sin compromiso.</dd></div>
+        <div><dt>Ajustes incluidos</dt><dd>2 rondas en el tablero y 1 en el análisis, más 30 días de garantía por errores en el tablero.</dd></div>
+        <div><dt>Forma de pago</dt><dd>50 % para iniciar y 50 % contra entrega. El plan mensual se paga mes anticipado.</dd></div>
+        <div><dt>Sus datos</dt><dd>Son suyos. Se tratan con confidencialidad y según la Ley 1581 de 2012.</dd></div>
+        <div><dt>Lo que se queda usted</dt><dd>El tablero y el código se le entregan al terminar el pago.</dd></div>
+        <div><dt>Plazos</dt><dd>Corren desde el anticipo y la entrega completa de la información.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="ancho">
+      <aside class="cierre">
+        <h2>¿No sabe <em>cuál le sirve?</em></h2>
+        <p>Lo vemos en 20 minutos, sin costo. Si no le puedo ayudar, también se lo digo.</p>
+        <div class="cierre__acciones">
+          <a class="firma firma--grande" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
+          <a class="flecha" href="#sobre-mi">Siguiente: Sobre mí <span aria-hidden="true">→</span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════ 5. SOBRE MÍ ═══════════════════════ -->
+<div class="hoja" id="sobre-mi" data-hoja="sobre-mi">
+  <header class="pagina__cabeza">
+    <div class="ancho">
+      <p class="pildora">Sobre mí</p>
+      <h1>Trabaja <em>directamente conmigo,</em> no con un practicante.</h1>
+      <p class="bajada">Quien hace el análisis es quien le responde.</p>
+    </div>
+  </header>
+
+  <section class="seccion seccion--corta" style="padding-top:0">
+    <div class="ancho">
+      <div class="sobre">
+        <div class="sobre__foto">
+          <img src="assets/img/foto-768.webp" srcset="assets/img/foto-384.webp 384w, assets/img/foto-768.webp 768w" sizes="(max-width: 860px) 90vw, 480px" width="768" height="960" alt="Santiago Tupaz Ramírez" loading="lazy" decoding="async">
+        </div>
+        <div class="sobre__texto">
+          <p class="sobre__entrada">Soy Santiago Tupaz Ramírez, de Envigado. Estudio Economía en la Universidad EAFIT y Estadística en la Universidad Nacional de Colombia, sede Medellín.</p>
+          <p>Me interesa entender por qué se mueve la economía de mi región y convertir esa respuesta en algo útil para quien decide. En el semillero aprendí que un buen análisis depende de datos que lleguen a tiempo y bien limpios, así que automatizo esa parte para dedicar el tiempo a lo que importa: explicar qué está pasando y qué puede venir.</p>
+          <p class="sobre__nota">Todavía soy estudiante, y por eso prefiero mostrarle el trabajo antes que los títulos: <a href="#mi-trabajo">mis proyectos</a>, el <a href="#tablero">tablero</a> y el error medido de cada pronóstico están ahí para que los revise.</p>
+          <dl class="formacion">
+            <div><dt>Economía</dt><dd>Universidad EAFIT · sexto semestre</dd></div>
+            <div><dt>Estadística</dt><dd>Universidad Nacional de Colombia, sede Medellín · tercer semestre</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--banda" id="historia" data-ruta="Mi historia" aria-labelledby="t-historia">
+    <div class="ancho">
+      <header class="seccion__cabeza seccion__cabeza--centro">
+        <p class="pildora">Línea de tiempo</p>
+        <h2 id="t-historia">Mi <em>historia</em></h2>
+      </header>
+      <ol class="historia">
+        <li>
+          <p class="historia__anio">2024</p>
+          <ul class="historia__hitos">
+            <li><b>Grupo de Economía de la Salud, EAFIT.</b> Miembro y organizador de workshops, desde marzo.</li>
+          </ul>
+        </li>
+        <li>
+          <p class="historia__anio">2025</p>
+          <ul class="historia__hitos">
+            <li><b>Semillero de Coyuntura Económica, EAFIT.</b> Desde junio: web scraping y automatización en Python para el tablero de coyuntura.</li>
+            <li><b>Informe de Coyuntura No. 25.</b> Capítulo de Balanza de pagos, presentado ante la Cámara de Comercio en octubre.</li>
+            <li><b>FENADECO.</b> Director de Externas y Marca Regional.</li>
+            <li><b>Monitorías en EAFIT.</b> Matemáticas Financieras y Microeconomía General.</li>
+          </ul>
+        </li>
+        <li>
+          <p class="historia__anio">2026</p>
+          <ul class="historia__hitos">
+            <li><b>Informes de Coyuntura No. 26 y No. 27.</b> Mayo y octubre.</li>
+            <li><b>Conferencia Internacional AREUEA 2026.</b> Monitor, en Medellín, del 23 al 25 de julio.</li>
+            <li><b>Pipeline de datos para NAIRU y PIB potencial.</b> <a href="#caso-nairu">Vea el caso</a>.</li>
+            <li><b>Representante estudiantil</b> del pregrado de Economía en EAFIT (2026-2).</li>
+            <li class="historia__hito"><b>Nace Tupaz Analytics.</b></li>
+          </ul>
+        </li>
+      </ol>
+      <div class="cifras">
+        <div><p class="cifra">3</p><p>informes de coyuntura</p></div>
+        <div><p class="cifra">6</p><p>proyectos publicados</p></div>
+        <div><p class="cifra">+490</p><p>pruebas automatizadas</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion franja-clara" data-ruta="Con qué trabajo" aria-labelledby="t-herramientas">
+    <div class="ancho">
+      <header class="seccion__cabeza">
+        <p class="pildora">Ficha técnica</p>
+        <h2 id="t-herramientas">Con qué <em>trabajo</em></h2>
+      </header>
+      <dl class="herramientas">
+        <div><dt>Programas</dt><dd>Python · R · Stata · Power BI · Excel · Quarto · Git y GitHub · LaTeX</dd></div>
+        <div><dt>Datos</dt><dd>Descarga automática de fuentes públicas (web scraping)</dd></div>
+        <div><dt>Análisis</dt><dd>Insumo-producto, datos panel y series de tiempo (VAR y ARIMA)</dd></div>
+        <div><dt>Tendencias y ciclos</dt><dd>Filtros de Hodrick-Prescott, Christiano-Fitzgerald, Butterworth y Kalman</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="ancho">
+      <aside class="cierre">
+        <h2>Cuénteme qué <em>necesita medir.</em></h2>
+        <p>Hablamos 20 minutos, sin costo, y vemos si le puedo ayudar.</p>
+        <div class="cierre__acciones">
+          <a class="firma firma--grande" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
+          <a class="flecha" href="#hablemos">Siguiente: Hablemos <span aria-hidden="true">→</span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════ 6. HABLEMOS ═══════════════════════ -->
+<div class="hoja" id="hablemos" data-hoja="hablemos">
+  <header class="pagina__cabeza">
+    <div class="ancho">
+      <p class="pildora">Hablemos</p>
+      <h1>Hablemos <em>20 minutos.</em></h1>
+      <p class="bajada">La primera reunión no tiene costo. Usted me cuenta cómo maneja hoy su información y yo le digo qué se puede hacer, cuánto se demora y cuánto vale.</p>
+    </div>
+  </header>
+
+  <section class="seccion" style="padding-top:0">
+    <div class="ancho">
+      <div class="hablemos">
+        <div>
+          <a class="firma firma--grande firma--ancha" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
+          <dl class="contactos">
+            <div><dt>WhatsApp</dt><dd><span data-contacto="whatsapp" class="pendiente">«número»</span></dd></div>
+            <div><dt>Correo</dt><dd><span data-contacto="correo" class="pendiente">«correo»</span></dd></div>
+            <div><dt>LinkedIn</dt><dd><span data-contacto="linkedin" class="pendiente">«enlace»</span></dd></div>
+            <div data-fila-contacto="github" hidden><dt>GitHub</dt><dd><span data-contacto="github"></span></dd></div>
+            <div><dt>Dónde</dt><dd>Envigado · Valle de Aburrá, Antioquia — reuniones presenciales en el Valle de Aburrá o virtuales</dd></div>
+          </dl>
+        </div>
+
+        <ol class="despues">
+          <li><b>Me escribe.</b> Con una línea basta: quién es y qué información maneja hoy.</li>
+          <li><b>Hablamos 20 minutos.</b> Sin costo. Si no le puedo ayudar, se lo digo ahí mismo.</li>
+          <li><b>Le envío una cotización.</b> Con alcance, plazo y precio por escrito, para que decida con calma.</li>
+        </ol>
+      </div>
+      <p class="seccion__pie"><a class="flecha" href="#inicio"><span aria-hidden="true">←</span> Volver al inicio</a></p>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ═══════════════════════ Pie de página ═══════════════════════ -->
+<footer class="pie">
+  <div class="ancho">
+    <div class="pie__arriba">
+      <div>
+        <a class="logo" href="#inicio" aria-label="Tupaz Analytics, Economía y Datos: ir al inicio"><svg class="logo__svg" viewBox="0 0 264 56" aria-hidden="true" focusable="false"><polyline class="logo__traza" points="3,38 12,29 19,33 29,19 35,23 41,11"/><circle class="logo__punto" cx="41" cy="11" r="4.5"/><text class="logo__texto" x="54" y="31"><tspan class="logo__tupaz">Tupaz</tspan> <tspan class="logo__analytics">Analytics</tspan></text><text class="logo__lema" x="55" y="51">Economía y Datos</text></svg></a>
+        <p class="pie__frase">Le muestro qué está pasando con sus datos, qué tan preciso es cada pronóstico y qué viene.</p>
+        <div class="pie__contacto">
+          <h2>Contacto</h2>
+          <ul>
+            <li><b>WhatsApp:</b> <span data-contacto="whatsapp">«número»</span></li>
+            <li><b>Correo:</b> <span data-contacto="correo">«correo»</span></li>
+            <li>Envigado · Valle de Aburrá, Antioquia — reuniones presenciales en el Valle de Aburrá o virtuales</li>
+          </ul>
+        </div>
+      </div>
+      <nav class="pie__columnas" aria-label="Enlaces del pie de página">
+        <div>
+          <h2>Servicios</h2>
+          <ul>
+            <li><a href="#servicio-tableros">Tableros automatizados</a></li>
+            <li><a href="#servicio-proyecciones">Proyecciones y escenarios</a></li>
+            <li><a href="#servicio-analisis">Análisis económico y de mercado</a></li>
+            <li><a href="#plan-mensual">Plan mensual</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Mi trabajo</h2>
+          <ul>
+            <li><a href="#caso-nairu">NAIRU y PIB potencial</a></li>
+            <li><a href="#caso-informe">Informe de Coyuntura</a></li>
+            <li><a href="#caso-antioquia">Coyuntura Antioquia</a></li>
+            <li><a href="#mas-proyectos">Más proyectos</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Recursos</h2>
+          <ul>
+            <li><a href="#tablero">Tablero en vivo</a></li>
+            <li><a href="tablero-completo/">Tablero completo</a></li>
+            <li><a data-red="linkedin" href="https://linkedin.com/in/santiago-tupaz-ram%C3%ADrez-2b87082b3" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a data-red="github" href="https://github.com/Tupxz" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <p class="pie__fuentes" data-solo-con-datos>Cifras: DANE, Banco de la República y datos.gov.co, con corte al <span data-dato="corte"></span>.</p>
+    <div class="pie__final">
+      <nav aria-label="Textos legales"><a href="politica-de-datos.html">Política de datos</a><a href="aviso-legal.html">Aviso legal</a><span>© 2026 Tupaz Analytics</span></nav>
+      <button class="tema" id="tema" type="button" aria-pressed="false">Modo claro</button>
+    </div>
+  </div>
+</footer>
+
+<!-- Botón fijo de WhatsApp en celular y tableta (en escritorio está en el encabezado). -->
+<div class="fijo" id="fijo">
+  <a class="firma" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
+</div>
+
+<script src="assets/js/contacto.js"></script>
+<script src="assets/js/datos.js"></script>
+<script src="assets/js/graficos.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

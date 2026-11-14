@@ -1,0 +1,42 @@
+# Lo que NO se publica en GitHub (el repositorio es público).
+
+# Archivos de sistema
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+
+# Referencias de la competencia y capturas de trabajo (no son nuestras ni las usa la página)
+referencias/
+
+# Notas internas de trabajo: instrucciones, borradores de contenido y de textos legales.
+# La página no las usa. Si algún día quieres publicarlas, borra la línea correspondiente.
+CLAUDE.md
+PROMPT.md
+CONTENIDO.md
+LEGAL.md
+
+# Datos crudos y archivos pesados (la página solo usa assets/js/datos.js, ya procesado)
+data/
+datos/
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.zip
+
+# Python y entornos locales
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Configuración local de herramientas
+.claude/
+.vscode/
+.idea/
+
+# Archivos de más de 5 MB: git no los puede excluir por tamaño. Hoy no hay ninguno fuera de
+# referencias/; antes de cada subida, revisa con:  find . -size +5M -not -path "./.git/*"

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 56" width="528" height="112">
+  <title>Tupaz Analytics · Economía y Datos</title>
+  <!-- Wordmark de Tupaz Analytics. El texto usa la fuente Outfit (títulos) e Inter (lema);
+       si no están instaladas, el programa que lo abra usa una parecida. Para un resultado exacto, use el PNG. -->
+  <polyline points="3,38 12,29 19,33 29,19 35,23 41,11" fill="none" stroke="#2FE08A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="41" cy="11" r="4.5" fill="#2FE08A"/>
+  <text x="54" y="31" font-family="Outfit, 'Avenir Next', 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="30" letter-spacing="-1"><tspan fill="#FFFFFF">Tupaz</tspan> <tspan fill="#2FE08A">Analytics</tspan></text>
+  <text x="55" y="51" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-weight="500" font-size="13.5" fill="#DCE5FA">Economía y Datos</text>
+</svg>
