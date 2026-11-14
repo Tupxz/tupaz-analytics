@@ -859,7 +859,7 @@ a.red::after {
   .hero h1 { order: 2; }
   .hero .bajada { order: 3; }
   .hero__foto { order: 4; width: 100%; max-width: none; margin: 24px 0 0; justify-self: auto; }
-  .hero__foto img { aspect-ratio: auto; height: 210px; object-position: 50% 24%; border-radius: 24px; }
+  .hero__foto img { aspect-ratio: auto; height: 240px; object-position: 50% 10%; border-radius: 24px; }
   .hero__dato { left: 12px; right: auto; bottom: 12px; padding: 10px 14px 12px; border-radius: 16px; }
   .hero__dato b { font-size: 1.05rem; }
   .hero__dato span { font-size: 1rem; }
