@@ -322,7 +322,7 @@
         <li><p class="historia__anio">2026</p><ul class="historia__hitos"><li><b>Informes de Coyuntura No. 26 y No. 27.</b> Mayo y octubre.</li><li class="historia__hito"><b>Nace Tupaz Analytics.</b></li></ul></li>
       </ol>
       <div class="cifras">
-        <div><p class="cifra">3</p><p>informes de coyuntura</p></div>
+        <div><p class="cifra">3</p><p>Informes de Coyuntura</p></div>
         <div><p class="cifra">6</p><p>proyectos publicados</p></div>
         <div><p class="cifra">+490</p><p>pruebas automatizadas</p></div>
       </div>
@@ -430,7 +430,7 @@
         <div class="caso__partes">
           <div class="caso__parte">
             <h3>De dónde partí</h3>
-            <p>El Semillero de Coyuntura Económica de EAFIT presenta su Informe de Coyuntura ante la Cámara de Comercio y mantiene un tablero de coyuntura con datos públicos.</p>
+            <p>El Semillero de Coyuntura Económica de EAFIT presenta su Informe de Coyuntura ante la Cámara de Comercio y mantiene un tablero económico con datos públicos.</p>
           </div>
           <div class="caso__parte">
             <h3>Qué hice</h3>
@@ -614,6 +614,16 @@
               </div>
             </div>
             <p class="detalle__rango"><b>De qué depende el precio.</b> $3.000.000: 1 o 2 fuentes limpias y 2 páginas. $5.000.000: 3 fuentes con limpieza compleja, 4 páginas y actualización programada.</p>
+            <div class="detalle__tecnico">
+              <h4>Vista técnica: cómo se hace</h4>
+              <ul>
+                <li><b>Datos.</b> Lectura de sus Excel o CSV y de fuentes públicas por API: DANE, Banco de la República y datos.gov.co.</li>
+                <li><b>Limpieza.</b> Un script en Python (pandas) estandariza fechas, nombres y unidades, y revisa vacíos y duplicados antes de publicar.</li>
+                <li><b>Actualización.</b> El script corre en un horario fijo y deja una tabla limpia que alimenta Looker Studio o el tablero web.</li>
+                <li><b>Control.</b> Si una fuente cambia de formato, el proceso se detiene y avisa, en vez de mostrar cifras erradas.</li>
+                <li><b>Lo que queda suyo.</b> El código documentado, en un repositorio privado, y el manual.</li>
+              </ul>
+            </div>
           </details>
         </article>
 
@@ -652,6 +662,16 @@
               </div>
             </div>
             <p class="detalle__rango"><b>Se contrata como complemento</b> del tablero o del análisis.</p>
+            <div class="detalle__tecnico">
+              <h4>Vista técnica: cómo se hace</h4>
+              <ul>
+                <li><b>Modelos.</b> SARIMA y otros modelos de series de tiempo (Python con statsmodels, o R), elegidos según la cantidad de datos y la estacionalidad.</li>
+                <li><b>Prueba del error.</b> Se proyectan meses que ya pasaron y se comparan con lo real (backtesting). El error (RMSE y MAPE) se explica en palabras: «en promedio, la proyección se desvía X %».</li>
+                <li><b>Escenarios.</b> Supuestos de inflación, tasa de interés y crecimiento tomados de fuentes oficiales (Banco de la República, MinHacienda).</li>
+                <li><b>Rangos.</b> Cada proyección trae su intervalo de confianza: un rango, no un solo número.</li>
+                <li><b>Datos mínimos.</b> Se recomiendan 24 meses de datos mensuales.</li>
+              </ul>
+            </div>
           </details>
         </article>
 
@@ -691,6 +711,15 @@
               </div>
             </div>
             <p class="detalle__rango"><b>De qué depende el precio.</b> $1.500.000: un sector, solo fuentes públicas. $3.000.000: varios segmentos o municipios, con sus datos y comparación con el sector.</p>
+            <div class="detalle__tecnico">
+              <h4>Vista técnica: cómo se hace</h4>
+              <ul>
+                <li><b>Fuentes.</b> DANE (precios, empleo y encuestas del sector), Banco de la República, Cámara de Comercio y datos.gov.co, con fecha de corte.</li>
+                <li><b>Métodos.</b> Tendencias sin el ruido de cada mes (filtro Hodrick-Prescott), variaciones anuales, participación y concentración del mercado (HHI y CR4).</li>
+                <li><b>Trazable.</b> El Excel trae cada cifra con su fuente, para que cualquiera la pueda verificar.</li>
+                <li><b>Entrega.</b> Gráficos y conclusiones en lenguaje de negocio; el detalle del método va en un anexo.</li>
+              </ul>
+            </div>
           </details>
         </article>
       </div>
@@ -706,7 +735,7 @@
         </div>
         <div class="fila__lado">
           <p class="precio"><span>Desde</span><b>$800.000</b><small>Hasta $1.500.000 al mes · informe en los primeros 5 días hábiles del mes</small></p>
-          <p class="fila__recibe"><b>Recibe:</b> informe de coyuntura de 2 a 4 páginas y hasta 3 horas de ajustes.</p>
+          <p class="fila__recibe"><b>Recibe:</b> informe mensual de 2 a 4 páginas (qué pasó con sus números y con la economía que los afecta: precios, empleo, construcción) y hasta 3 horas de ajustes.</p>
           <a class="firma firma--oscura" data-wa href="#hablemos"><span class="firma__t">Escríbame por WhatsApp</span><span class="firma__f" aria-hidden="true"></span></a>
         </div>
         <details class="detalle fila__detalle">
@@ -717,7 +746,7 @@
               <ul>
                 <li>Vigilancia de la actualización automática y corrección de fallas.</li>
                 <li>Hasta 3 horas de ajustes menores al mes: un indicador nuevo, un filtro, una fuente que cambió de formato.</li>
-                <li>Informe breve: qué pasó en el mes con sus indicadores y con la economía que los afecta.</li>
+                <li>Informe mensual breve: qué pasó con sus números y con la economía que los afecta (precios, empleo, construcción).</li>
                 <li>Actualización trimestral de las proyecciones, si las contrató.</li>
                 <li>Soporte por correo o WhatsApp en horario hábil, con respuesta en 2 días hábiles.</li>
               </ul>
@@ -732,8 +761,38 @@
             </div>
           </div>
           <p class="detalle__rango"><b>De qué depende el precio.</b> $800.000: tablero pequeño e informe de 2 páginas. $1.500.000: tablero grande o varias sedes, e informe con proyecciones actualizadas.</p>
+          <div class="detalle__tecnico">
+            <h4>Vista técnica: cómo se hace</h4>
+            <ul>
+              <li><b>Revisión.</b> Cada mes se comprueba que la actualización automática corrió completa y sin errores.</li>
+              <li><b>Informe.</b> Sus indicadores frente al mes anterior y al mismo mes del año pasado, más 3 a 5 cifras de la economía que los afectan (inflación, desempleo, licencias de construcción, tasas), con fuente y fecha.</li>
+              <li><b>Proyecciones.</b> Si las contrató, se recalculan cada trimestre con los datos nuevos y se compara lo proyectado con lo que pasó.</li>
+            </ul>
+          </div>
         </details>
       </article>
+
+      <details class="detalle cuadro" id="comparar-servicios">
+        <summary>Comparar los tres servicios y el plan</summary>
+        <p class="cuadro__pista nota">Deslice la tabla hacia los lados →</p>
+        <div class="cuadro__marco" tabindex="0" role="region" aria-label="Cuadro comparativo de servicios">
+          <table class="cuadro__tabla">
+            <thead>
+              <tr><th scope="col"><span class="sr">Aspecto</span></th><th scope="col">Tableros automatizados</th><th scope="col">Proyecciones y escenarios</th><th scope="col">Análisis económico y de mercado</th><th scope="col">Plan mensual</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Le sirve si</th><td>Sus datos están dispersos y alguien los consolida a mano cada mes.</td><td>Ya tiene el tablero o el análisis y quiere planear los próximos meses.</td><td>Aún no tiene sus datos organizados y quiere entender su mercado.</td><td>Ya hizo un proyecto y quiere que siga al día.</td></tr>
+              <tr><th scope="row">Pregunta que responde</th><td>¿Qué está pasando hoy con mis números?</td><td>¿Qué puede pasar en 6, 12 o 24 meses?</td><td>¿Cómo está mi mercado y cómo me comparo?</td><td>¿Qué cambió este mes y por qué?</td></tr>
+              <tr><th scope="row">Recibe</th><td>Tablero en Looker Studio o web, manual y capacitación.</td><td>Proyección con tres escenarios y su margen de error.</td><td>Informe en PDF (10 a 15 páginas) y Excel con los datos.</td><td>Informe mensual de 2 a 4 páginas y hasta 3 horas de ajustes.</td></tr>
+              <tr><th scope="row">Se actualiza solo</th><td>Sí</td><td>Se recalcula cada trimestre con el plan</td><td>No: es una foto del momento</td><td>Mantiene lo que ya se actualiza</td></tr>
+              <tr><th scope="row">Precio orientativo</th><td>$3.000.000 a $5.000.000</td><td>$1.500.000 a $3.000.000, adicional</td><td>$1.500.000 a $3.000.000</td><td>$800.000 a $1.500.000 al mes</td></tr>
+              <tr><th scope="row">Entrega</th><td>3 a 5 semanas</td><td>2 a 3 semanas</td><td>2 a 3 semanas</td><td>Primeros 5 días hábiles de cada mes</td></tr>
+              <tr><th scope="row">Se contrata</th><td>Solo</td><td>Como complemento</td><td>Solo</td><td>Después de cualquier proyecto</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="detalle__rango"><b>Ruta más común.</b> Análisis o tablero primero; luego el plan mensual, y proyecciones cuando ya hay datos suficientes.</p>
+      </details>
     </div>
   </section>
 
@@ -813,7 +872,7 @@
         <li>
           <p class="historia__anio">2025</p>
           <ul class="historia__hitos">
-            <li><b>Semillero de Coyuntura Económica, EAFIT.</b> Desde junio: web scraping y automatización en Python para el tablero de coyuntura.</li>
+            <li><b>Semillero de Coyuntura Económica, EAFIT.</b> Desde junio: web scraping y automatización en Python para el tablero económico del semillero.</li>
             <li><b>Informe de Coyuntura No. 25.</b> Capítulo de Balanza de pagos, presentado ante la Cámara de Comercio en octubre.</li>
             <li><b>FENADECO.</b> Director de Externas y Marca Regional.</li>
             <li><b>Monitorías en EAFIT.</b> Matemáticas Financieras y Microeconomía General.</li>
@@ -831,7 +890,7 @@
         </li>
       </ol>
       <div class="cifras">
-        <div><p class="cifra">3</p><p>informes de coyuntura</p></div>
+        <div><p class="cifra">3</p><p>Informes de Coyuntura</p></div>
         <div><p class="cifra">6</p><p>proyectos publicados</p></div>
         <div><p class="cifra">+490</p><p>pruebas automatizadas</p></div>
       </div>
