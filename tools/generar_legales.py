@@ -20,7 +20,7 @@ pie = re.sub(r'\s*<p class="pie__fuentes" data-solo-con-datos>.*?</p>', "", pie,
 
 AVISO = """      <p class="pildora">Aviso legal</p>
       <h1>Aviso legal y términos de uso</h1>
-      <p class="legal__responsable"><b>Responsable del sitio:</b> Santiago Tupaz Ramírez, persona natural, Envigado, Antioquia, Colombia. Correo: <a data-correo href="mailto:stupazr@eafit.edu.co">stupazr@eafit.edu.co</a>.</p>
+      <p class="legal__responsable"><b>Responsable del sitio:</b> Santiago Tupaz Ramírez, persona natural, Envigado, Antioquia, Colombia. Correo: <a data-correo href="mailto:tupaz.analytics@gmail.com">tupaz.analytics@gmail.com</a>.</p>
       <ol>
         <li><b>Precios orientativos.</b> Los valores publicados son rangos de referencia y no constituyen una oferta vinculante. El precio, el alcance y los plazos de cada servicio se definen en una cotización formal escrita.</li>
         <li><b>Información y análisis.</b> Los análisis, tableros y proyecciones de este sitio tienen fines informativos y de demostración. No constituyen asesoría financiera, de inversión, legal ni tributaria. Las proyecciones son estimaciones con márgenes de error y pueden no cumplirse.</li>
@@ -34,12 +34,12 @@ AVISO = """      <p class="pildora">Aviso legal</p>
 # Si se instala una, se vuelve a agregar al punto 1.
 POLITICA = """      <p class="pildora">Ley 1581 de 2012 y Decreto 1377 de 2013</p>
       <h1>Política de tratamiento de datos personales</h1>
-      <p class="legal__responsable"><b>Responsable:</b> Santiago Tupaz Ramírez · Envigado, Antioquia · <a data-correo href="mailto:stupazr@eafit.edu.co">stupazr@eafit.edu.co</a>.</p>
+      <p class="legal__responsable"><b>Responsable:</b> Santiago Tupaz Ramírez · Envigado, Antioquia · <a data-correo href="mailto:tupaz.analytics@gmail.com">tupaz.analytics@gmail.com</a>.</p>
       <ol>
         <li><b>Qué datos recojo:</b> los que usted me entrega voluntariamente al escribirme por WhatsApp, correo o LinkedIn (nombre, empresa o entidad, cargo, teléfono, correo y la información de su consulta).</li>
         <li><b>Para qué:</b> responder su consulta, preparar cotizaciones y propuestas, prestar los servicios contratados, enviar información relacionada con ellos y mejorar este sitio. No vendo ni cedo sus datos a terceros.</li>
         <li><b>Sus derechos:</b> conocer, actualizar, rectificar y suprimir sus datos, solicitar prueba de la autorización y revocarla, y presentar quejas ante la Superintendencia de Industria y Comercio.</li>
-        <li><b>Cómo ejercerlos:</b> escriba a <a data-correo href="mailto:stupazr@eafit.edu.co">stupazr@eafit.edu.co</a>. Las consultas se responden en máximo 10 días hábiles y los reclamos en máximo 15 días hábiles.</li>
+        <li><b>Cómo ejercerlos:</b> escriba a <a data-correo href="mailto:tupaz.analytics@gmail.com">tupaz.analytics@gmail.com</a>. Las consultas se responden en máximo 10 días hábiles y los reclamos en máximo 15 días hábiles.</li>
         <li><b>Datos de clientes en proyectos:</b> la información que un cliente comparte para un proyecto se trata con confidencialidad y solo para ese proyecto, según lo pactado en el contrato.</li>
         <li><b>Vigencia:</b> esta política rige desde el 13 de noviembre de 2026. Los cambios se publicarán en esta página.</li>
       </ol>

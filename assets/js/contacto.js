@@ -4,7 +4,7 @@ window.TUPAZ_CONTACTO = {
   // Celular con indicativo del país, solo números. Ejemplo: "573001234567"
   whatsapp: "573014051265",
   // Ejemplo: "hola@tupazanalytics.co"
-  correo: "stupazr@eafit.edu.co",
+  correo: "tupaz.analytics@gmail.com",
   // Dirección completa del perfil. Ejemplo: "https://www.linkedin.com/in/santiago-tupaz"
   linkedin: "https://linkedin.com/in/santiago-tupaz-ram%C3%ADrez-2b87082b3",
   // Perfil de GitHub (opcional; si se deja vacío, la fila no aparece).
