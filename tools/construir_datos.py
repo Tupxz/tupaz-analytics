@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Arma assets/js/datos.js a partir de la demo «Coyuntura Antioquia».
+"""Arma assets/js/datos.js a partir de la demo «Tablero económico de Antioquia».
 
 Lee ../06_Demo/data/processed/ (series, cifras, pronósticos y backtesting) y deja
 un solo archivo con todo lo que la página necesita: la cinta de indicadores, la
@@ -112,7 +112,7 @@ def acumulado12(nombre: str) -> list[float]:
 
 tarjetas = {t["titulo"]: t for t in textos["tarjetas"]}
 CINTA = [
-    ("Desempleo · Medellín A.M.", "Desempleo Medellín", "td_medellin", None),
+    ("Desempleo · Valle de Aburrá", "Desempleo Medellín", "td_medellin", None),
     ("Inflación anual · Medellín", "Inflación Medellín", "ipc_var_anual_medellin", None),
     ("Tasa de política monetaria", "Tasa Banco República", "tpm_fin_mes", None),
     ("TRM (pesos por dólar)", "Dólar (TRM)", "trm_promedio_mensual", None),
@@ -271,7 +271,7 @@ desempleo = {
                 "Si va a contratar: hay menos personas buscando trabajo que hace un año; conseguir personal puede tomar más tiempo.",
             ]) + ["Con sus propios datos al lado, se ve si sus ventas se mueven con el empleo de la ciudad o por su cuenta."],
             "titulo": "Tasa de desempleo, Medellín y área metropolitana (%)",
-            "principal": {"nombre": "Medellín A.M.", **serie("td_medellin", desde="2015-01-01")},
+            "principal": {"nombre": "Valle de Aburrá", **serie("td_medellin", desde="2015-01-01")},
             "comparacion": {"nombre": "13 ciudades", **serie("td_13ciudades", desde="2015-01-01")},
             "nota": "Trimestres móviles. Fuente: DANE, GEIH.",
         },
